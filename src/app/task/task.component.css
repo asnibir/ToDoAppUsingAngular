@@ -1,0 +1,107 @@
+/*
+ * Title: To Do List CSS file
+ * Description: This file has all the styles associated with the To Do App project
+ *
+ */
+
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    background: #4eb186;
+    padding: 25px;
+    max-width: 1250px;
+    margin: 25px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 0px solid #ab4017;
+    font-family: sans-serif;
+}
+
+
+h1 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    text-align: center;
+    border-bottom: 2px solid #ffffff;
+    padding: 0 0 10px;
+    color: #4eb186;
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    text-align: center;
+    padding: 0 0 10px;
+    color: #4eb186;
+    border-bottom: 2px solid #4eb186;
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.logo {
+    width: 100%;
+    text-align: center;
+}
+
+.logo img {
+    width: 100px;
+}
+
+.new-task-container {
+    text-align: center;
+}
+
+.box {
+    padding: 10px 15px;
+    border: 0px solid #ab4017;
+    border-radius: 5px;
+    background: #fff;
+    margin: 15px 0;
+}
+
+.todo-list {
+    float: left;
+    width: 46%;
+}
+
+.complete-list {
+    float: right;
+    width: 46%;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    padding: 10px;
+    border-bottom: 1px dotted #ccc;
+}
+
+.update {
+    float: right;
+    background-color: blue;
+    color: white;
+    border: 0px;
+    padding: 3px 5px;
+}
+
+.delete {
+    float: right;
+    background-color: red;
+    color: white;
+    border: 0px;
+    padding: 3px 5px;
+}
+
+:host ::ng-deep wide-button {
+    width: 400px;
+}

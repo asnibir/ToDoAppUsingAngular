@@ -1,0 +1,77 @@
+<section class="container">
+    <h1 id="header" class="header" style="color:#fff">To-Do App Using Angular</h1>
+
+    <div class="new-task-container box">
+        <button style="width: 400px; 
+            background-color: #4eb186; 
+            border: 0px;
+            align-items: center;
+            justify-content: center;" class="p-button p-button-raised" (click)="showAddModal()">
+            <label
+                style="font-size: 25px; font-weight: bold; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; cursor:pointer;">ADD
+                TASK</label>
+        </button>
+        <!-- <p-button styleClass="p-button-raised" label="Add Task" (click)="showAddModal()"></p-button> -->
+    </div>
+
+    <div class="todo-list box">
+        <h2>Incomplete Tasks</h2>
+        <p-table [value]="tasks" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th></th>
+                    <th>Title</th>
+                    <th>User ID</th>
+                    <th></th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-todo>
+
+                <tr *ngIf="!todo.completed">
+                    <td><p-checkbox (onChange)="completeTask(todo)" [(ngModel)]="todo.completed" [binary]="true"
+                            inputId="binary"></p-checkbox></td>
+                    <td>{{todo.title}}</td>
+                    <td>{{todo.userId}}</td>
+                    <td>
+                        <button style="background-color: #4eb186; border: 0px;" pButton icon="pi pi-pencil"
+                            class="p-button-rounded p-button-success mr-2" (click)="showEditModal(todo)">
+                        </button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <div class="complete-list box">
+        <h2>Completed Tasks</h2>
+        <p-table [value]="tasks" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Title</th>
+                    <th>User ID</th>
+                    <th></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-todo>
+                <tr *ngIf="todo.completed">
+                    <td>{{todo.title}}</td>
+                    <td>{{todo.userId}}</td>
+                    <td>
+                        <button style="background-color: #4eb186; border: 0px;" pButton icon="pi pi-trash"
+                            class="p-button-rounded p-button-warning" (click)="deleteTask(todo)">
+                        </button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+    <app-add-edit-task [displayAddEditModal]="displayAddEditModal" [selectedTask]="selectedTask"
+        (clickClose)="hideAddModal($event)" (clickAddEdit)="saveUpdateTaskList($event)">
+    </app-add-edit-task>
+</section>
+
+<p-confirmDialog header="Delete"></p-confirmDialog>
+
+<p-toast position="bottom-right"></p-toast>

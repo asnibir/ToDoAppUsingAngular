@@ -1,0 +1,31 @@
+<p-dialog header=" {{modalType}} Task" [(visible)]="displayAddEditModal" [modal]="true" [draggable]="false"
+    [resizable]="false" [style]="{width: '50vw'}" (onHide)="closeModal()">
+
+    <form [formGroup]="taskForm" class="task-form">
+
+        <div class="field">
+            <label style="color: #4eb186;" class="block" for="userId">UserID</label>
+            <p-inputNumber style="width: 250px; margin-left: 5px; margin-bottom: 10px;" id="userId"
+                formControlName="userId" class="block"></p-inputNumber>
+            <small class="p-error block" *ngIf="
+                taskForm.controls['userId'].invalid &&
+                taskForm.controls['userId'].dirty
+              ">Field is required</small>
+        </div>
+
+        <div class="field">
+            <label style="color: #4eb186;" class="block" for="title">Title</label>
+            <input style="width: 450px; margin-left: 20px;" type="text" pInputText id="title" formControlName="title" />
+            <small class="p-error block" *ngIf="
+            taskForm.controls['title'].invalid &&
+            taskForm.controls['title'].dirty
+          ">Field is required</small>
+        </div>
+
+    </form>
+
+    <ng-template pTemplate="footer">
+        <p-button (click)="closeModal()" label="Cancel" styleClass="p-button-text"></p-button>
+        <p-button (click)="addEditTask()" label="{{modalType}}" [disabled]="taskForm.invalid"></p-button>
+    </ng-template>
+</p-dialog>
