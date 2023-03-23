@@ -25,8 +25,7 @@ export class TaskService {
     }
     else {
       console.log("THIS IS UPDATED");
-
-      return this.http.patch(`https://jsonplaceholder.typicode.com/todos/${selectedTask.id}`, postData); // different url?
+      return this.http.patch(`${this.url}/${selectedTask.id}`, postData); // different url?
     }
 
   }
