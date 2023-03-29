@@ -31,11 +31,11 @@ export class TaskService {
   }
 
   deleteTask(taskId: number) {
-    return this.http.delete(`https://jsonplaceholder.typicode.com/todos/${taskId}`);
+    return this.http.delete(`${this.url}/${taskId}`);
   }
 
   completeTask(task: Task) {
-    this.http.patch(`https://jsonplaceholder.typicode.com/todos/${task.id}`, task)
+    this.http.patch(`${this.url}/${task.id}`, task)
       .subscribe(response => {
         console.log(response);
       },

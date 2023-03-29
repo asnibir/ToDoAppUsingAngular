@@ -3,7 +3,7 @@
 
     <div class="new-task-container box">
         <button style="width: 400px; 
-            background-color: #4eb186; 
+            background-color: #7c72c2; 
             border: 0px;
             align-items: center;
             justify-content: center;" class="p-button p-button-raised" (click)="showAddModal()">
@@ -19,8 +19,8 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th></th>
-                    <th style="width: fit-content; color: #4eb186;">Title</th>
-                    <th style="width: 100px; color: #4eb186;">User ID</th>
+                    <th style="width: fit-content; color: #7c72c2;">Title</th>
+                    <th style="width: 100px; color: #7c72c2;">User ID</th>
                     <th></th>
                 </tr>
             </ng-template>
@@ -32,7 +32,7 @@
                     <td>{{todo.title}}</td>
                     <td>{{todo.userId}}</td>
                     <td>
-                        <button style="background-color: #4eb186; border: 0px;" pButton icon="pi pi-pencil"
+                        <button style="background-color: #7c72c2; border: 0px;" pButton icon="pi pi-pencil"
                             class="p-button-rounded p-button-success mr-2" (click)="showEditModal(todo)">
                         </button>
                     </td>
@@ -46,8 +46,8 @@
         <p-table [value]="tasks" [paginator]="true" [rows]="10">
             <ng-template pTemplate="header">
                 <tr>
-                    <th style="width: fit-content; color: #4eb186;">Title</th>
-                    <th style="width: 100px; color: #4eb186;">User ID</th>
+                    <th style="width: fit-content; color: #7c72c2;">Title</th>
+                    <th style="width: 100px; color: #7c72c2;">User ID</th>
                     <th></th>
                 </tr>
             </ng-template>
@@ -56,7 +56,7 @@
                     <td>{{todo.title}}</td>
                     <td>{{todo.userId}}</td>
                     <td>
-                        <button style="background-color: #4eb186; border: 0px;" pButton icon="pi pi-trash"
+                        <button style="background-color: #7c72c2; border: 0px;" pButton icon="pi pi-trash"
                             class="p-button-rounded p-button-warning" (click)="deleteTask(todo)">
                         </button>
                     </td>
