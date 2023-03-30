@@ -13,9 +13,14 @@ import { ButtonModule } from 'primeng/button'
 import { MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { ActionReducerMap, StoreModule } from '@ngrx/store';
+import { initialState, tasksReducer } from './store/reducers';
+import { EffectsModule } from '@ngrx/effects';
 
 import { TaskComponent } from './task.component';
 import { AddEditTaskModule } from './add-edit-task/add-edit-task.module';
+import { TasksEffects } from './store/effetcs';
+import { TaskService } from './task.service';
 
 @NgModule({
   declarations: [
@@ -36,10 +41,14 @@ import { AddEditTaskModule } from './add-edit-task/add-edit-task.module';
     ButtonModule,
     AddEditTaskModule,
     ConfirmDialogModule,
+    //StoreModule.forFeature(taskFeatureKey, tasksReducer, { initialState: initialState }),
+    //StoreModule.forRoot({ taskFeatureKey: tasksReducer } as ActionReducerMap<any,any>),
+    StoreModule.forFeature('tasks', tasksReducer),
+    EffectsModule.forFeature([TasksEffects]),
   ],
   exports: [
     TaskComponent
   ],
-  providers: [MessageService, ConfirmationService]
+  providers: [MessageService, ConfirmationService, TaskService]
 })
 export class TaskModule { }

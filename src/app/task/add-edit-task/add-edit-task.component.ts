@@ -46,27 +46,28 @@ export class AddEditTaskComponent implements OnInit, OnChanges {
   }
 
   closeModal() {
-    console.log("Modal is closed");
+    //console.log("Modal is closed");
     this.taskForm.reset();
     this.clickClose.emit(true);
   }
 
   addEditTask() {
-    console.log("Selected Task add-edit-task: " + this.selectedTask);
-    this.taskService.addEditTask(this.taskForm.value, this.selectedTask).subscribe(
-      response => {
-        console.log(response);
-        this.clickAddEdit.emit(response);
-        this.closeModal();
-        const msg = this.modalType === 'Add' ? 'Task added' : 'Task updated';
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: msg });
-      },
-      error => {
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
-        console.log('Errror occured');
-      }
-    );
+    if(this.taskForm.valid){
+      console.log("Selected Task add-edit-task: " + this.selectedTask);
+      this.taskService.addEditTask(this.taskForm.value, this.selectedTask).subscribe(
+        response => {
+          console.log(response);
+          this.clickAddEdit.emit(response);
+          this.closeModal();
+          const msg = this.modalType === 'Add' ? 'Task added' : 'Task updated';
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: msg });
+        },
+        error => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: error });
+          console.log('Errror occured');
+        }
+      );
+    }
   }
-
 
 }

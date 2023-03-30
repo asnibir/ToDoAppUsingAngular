@@ -4,8 +4,11 @@
     <form [formGroup]="taskForm" class="task-form">
 
         <div class="field">
-            <label class="block" for="userId">UserID</label>
-            <p-inputNumber style="width: 250px; margin-left: 5px; margin-bottom: 10px;" id="userId"
+            <label class="block" for="userId">
+                UserID
+                <span style="color: red;">*</span>
+            </label>
+            <p-inputNumber [style]="{ width: '250px', marginLeft: '5px', marginBottom: '10px' }" id="userId"
                 formControlName="userId" class="block"></p-inputNumber>
             <small class="p-error block" *ngIf="
                 taskForm.controls['userId'].invalid &&
@@ -14,7 +17,10 @@
         </div>
 
         <div class="field">
-            <label class="block" for="title">Title</label>
+            <label class="block" for="title">
+                Title
+                <span style="color: red;">*</span>
+            </label>
             <input style="width: 450px; margin-left: 20px;" type="text" pInputText id="title" formControlName="title" />
             <small class="p-error block" *ngIf="
             taskForm.controls['title'].invalid &&

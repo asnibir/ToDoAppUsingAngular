@@ -11,7 +11,7 @@
 .container {
     background: #7c72c2;
     padding: 25px;
-    max-width: 1250px;
+    max-width: 1450px;
     margin: 25px auto;
     overflow: hidden;
     border-radius: 10px;
@@ -69,12 +69,12 @@ h2 {
 
 .todo-list {
     float: left;
-    width: 46%;
+    width: 48%;
 }
 
 .complete-list {
     float: right;
-    width: 46%;
+    width: 48%;
 }
 
 ul {

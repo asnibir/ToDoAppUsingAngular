@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of, delay } from 'rxjs';
 import { Task } from './task';
 
 @Injectable({
@@ -13,18 +13,19 @@ export class TaskService {
   constructor(private http: HttpClient) { }
 
   getTasks(): Observable<Task[]> {
+    console.log("getTasks method");
     return this.http.get<Task[]>(this.url);
   }
 
   addEditTask(postData: any, selectedTask: any) {
-    console.log("Selected Task in service: " + selectedTask);
+    //console.log("Selected Task in service: " + selectedTask);
     if (!selectedTask) {
-      console.log("THIS IS ADD");
-      console.log("postData: " + postData);
+      //console.log("THIS IS ADD");
+      //console.log("postData: " + postData);
       return this.http.post(this.url, postData);
     }
     else {
-      console.log("THIS IS UPDATED");
+      //console.log("THIS IS UPDATED");
       return this.http.patch(`${this.url}/${selectedTask.id}`, postData); // different url?
     }
 
