@@ -24,10 +24,13 @@
                 TASK</label>
         </button>
     </div>
-    <!-- *ngIf="(tasks$ | async) as tasks" -->
+    <!-- *ngIf="(tasks$ | async) as tasks" 
+        [value]="tasks"
+    -->
     <div class="todo-list box">
         <h2>Incomplete Tasks</h2>
-        <p-table [value]="tasks" [paginator]="true" [rows]="10" [showCurrentPageReport]="false" [rowsPerPageOptions]="[10, 15, 20]">
+        <p-table [value]="tasks" [paginator]="true" [rows]="10" [showCurrentPageReport]="false"
+            [rowsPerPageOptions]="[10, 15, 20]">
             <ng-template pTemplate="header">
                 <tr>
                     <th></th>
@@ -54,10 +57,11 @@
     </div>
 
     <!-- *ngIf="(tasks$ | async) as tasks" -->
-
+    <!-- *ngIf="(tasks$ | async) as tasks" -->
     <div class="complete-list box">
         <h2>Completed Tasks</h2>
-        <p-table [value]="tasks" [paginator]="true" [rows]="10" [showCurrentPageReport]="false" [rowsPerPageOptions]="[10, 15, 20]">
+        <p-table [value]="tasks" [paginator]="true" [rows]="10" [showCurrentPageReport]="false"
+            [rowsPerPageOptions]="[10, 15, 20]">
             <ng-template pTemplate="header">
                 <tr>
                     <th style="width: fit-content; color: #7c72c2;">Title</th>

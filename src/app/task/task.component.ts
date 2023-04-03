@@ -3,7 +3,7 @@ import { Task } from './task';
 import { TaskService } from './task.service';
 import { ConfirmationService } from 'primeng/api';
 import { MessageService } from 'primeng/api';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, take } from 'rxjs';
 import { AppStateInterface } from '../app-state-interface';
 import { select, Store } from '@ngrx/store';
 import { errorSelector, isLoadingSelector, postsSelector } from './store/selectors';
@@ -24,27 +24,33 @@ export class TaskComponent implements OnInit, OnDestroy {
   errors$: Observable<string | null>;
   tasks$: Observable<Task[]>;
 
+
   constructor(private taskService: TaskService,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private store: Store<AppStateInterface>) {
-      this.isLoading$ = this.store.pipe(select(isLoadingSelector));
-      this.errors$ = this.store.pipe(select(errorSelector));
-      this.tasks$ = this.store.pipe(select(postsSelector));
-    }
+    this.isLoading$ = this.store.pipe(select(isLoadingSelector));
+    this.errors$ = this.store.pipe(select(errorSelector));
+    this.tasks$ = this.store.pipe(select(postsSelector));
+  }
 
   ngOnInit(): void {
     this.store.dispatch(TasksAction.getTasks());
-    this.getTaskList();
+    this.tasks$.subscribe(res => {
+      this.tasks = JSON.parse(JSON.stringify(res));
+    })
+
+    //this.getTaskList();
+
   }
 
-  getTaskList() {
-    this.taskService.getTasks().subscribe(
-      response => {
-        this.tasks = response;
-      }
-    )
-  }
+  // getTaskList() {
+  //   this.taskService.getTasks().subscribe(
+  //     response => {
+  //       this.tasks = response;
+  //     }
+  //   )
+  // }
 
   showAddModal() {
     //console.log("Modal Showed up!");
@@ -57,10 +63,11 @@ export class TaskComponent implements OnInit, OnDestroy {
     this.displayAddEditModal = !isClosed;
   }
 
-  saveUpdateTaskList(newData: any) {
+  saveUpdateTaskList(newData: Task) {
     console.log("task.component.ID: " + newData.id);
     if (this.selectedTask && newData.id === this.selectedTask.id) {
       //console.log('UPDATED');
+
       const taskIndex = this.tasks.findIndex(data => data.id === newData.id);
       this.tasks[taskIndex] = newData;
     }
@@ -68,10 +75,10 @@ export class TaskComponent implements OnInit, OnDestroy {
       //console.log("ADDED");
       this.tasks.unshift(newData);  // add
     }
-
   }
 
-  showEditModal(task: any) {
+
+  showEditModal(task: Task) {
     //console.log('edit modal is shown.');
     this.displayAddEditModal = true;
     this.selectedTask = task;
