@@ -12,7 +12,7 @@ export const initialState: TasksState = {
 
 export const tasksReducer = createReducer(
     initialState,
-    on(TaskActions.getTasks, (state) => ({...state, isLoading: true})),
+    on(TaskActions.getTasks, (state) => ({ ...state, isLoading: true })),
     on(TaskActions.getTasksSuccess, (state, action) => ({
         ...state,
         isLoading: false,
